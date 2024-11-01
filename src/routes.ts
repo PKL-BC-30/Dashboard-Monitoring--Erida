@@ -13,7 +13,7 @@ import VerifyOtp from './pages/verify';
 export const routes: RouteDefinition[] = [
   {
     path: '/',
-    component: Home,
+    component: Dashboard,
   },
   {
     path: '/login',
@@ -23,10 +23,10 @@ export const routes: RouteDefinition[] = [
     path: '/register',
     component: Register,
   },
-  {
-    path: '/dashboard',
-    component: Dashboard,
-  },
+  // {
+  //   path: '/dashboard',
+  //   component: Dashboard,
+  // },
   {
     path: '/forgotpassword',
     component: ForgotPassword,
