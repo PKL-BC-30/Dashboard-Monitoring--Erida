@@ -42,48 +42,47 @@ function Dashboard() {
   
   const handleLogout = async () => {
     if (window.confirm('Apakah Anda yakin ingin keluar?')) {
-      try {
-        const userIdValue = userId(); 
-        if (userIdValue) {
-          await fetch(`${import.meta.env.VITE_API_BASE_URL}/logout/${userIdValue}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-  
-          setUserName('User'); 
-          setUserId(null); 
-          setUserEmail(null);
-          setIsLoggedIn(false);
-          setIsLoggedOut(true);
-  
-          navigate('/login');
-        } else {
-          console.error('User ID is not available');
+        try {
+            const userIdValue = userId(); 
+            if (userIdValue) {
+                await fetch(`http://127.0.0.1:8080/logout/${userIdValue}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                setUserName('User'); 
+                setUserId(null); 
+                setUserEmail(null);
+                setIsLoggedIn(false);
+                setIsLoggedOut(true);
+
+                navigate('/login');
+            } else {
+                console.error('User ID is not available');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
         }
-      } catch (error) {
-        console.error('Error during logout:', error);
-      }
     }
-  };
-  
+};
 
   const loginUser = async (email, password) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
+      const response = await fetch('http://127.0.0.1:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password })
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         if (data.email_verified) {
           setUserEmail(email);
-          setUserName(data.nama_lengkap); 
+          setUserName(data.nama_lengkap); // Set the user's name from response
           setIsLoggedIn(true);
         } else {
           console.error('Email belum terverifikasi');
