@@ -86,6 +86,13 @@
 .dark-mode .age h4 {
   color: var(--text-color-dark);
 }
+.dark-mode .gender {
+  background-color: var(--chart-bg-dark);
+}
+
+.dark-mode .gender h4 {
+  color: var(--text-color-dark);
+}
 .dark-mode .bloodtype {
   background-color: var(--chart-bg-dark);
 }
